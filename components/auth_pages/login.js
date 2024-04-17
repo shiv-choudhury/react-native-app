@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Styles from "./style";
+import Styles from "../../style";
 
 const LoginPage = ({ navigation }) => {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
