@@ -74,7 +74,7 @@ const App = () => {
         <Stack.Screen
           name="JobFeedPage"
           component={JobFeedPage}
-          options={{ title: "Delect a job from the feed" }}
+          options={{ title: "Select a job from the feed" }}
         />
         <Stack.Screen
           name="ChatScreen"

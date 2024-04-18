@@ -93,8 +93,9 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   jobRoleImage: {
-    width: 80,
-    height: 80
+    width: 100,
+    height: 100,
+    borderRadius: 8
   },
   jobRoleTitle: {
     marginTop: 8,
@@ -114,9 +115,10 @@ const styles = StyleSheet.create({
     marginVertical: 8
   },
   recentJobImage: {
-    width: 50,
-    height: 50,
-    marginRight: 12
+    width: 80,
+    height: 80,
+    marginRight: 12,
+    borderRadius: 8
   },
   recentJobTitle: {
     fontSize: 14

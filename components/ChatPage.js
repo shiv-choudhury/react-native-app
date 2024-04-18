@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { Platform } from "react-native";
 import {
   View,
   Text,
   TouchableOpacity,
   Image,
   TextInput,
-  StyleSheet
+  StyleSheet,
+  ImageBackground,
+  KeyboardAvoidingView
 } from "react-native";
+// import { ImageBackground } from "react-native-web";
 // import { AudioPlayer } from "react-native-audio-player-recorder";
 
 const ChatScreen = () => {
@@ -14,7 +18,7 @@ const ChatScreen = () => {
   const [messages, setMessages] = useState([
     {
       sender: "Jhon Abraham",
-      content: "Hello ! Nazrul How are you?",
+      content: "Hello ! Shiv How are you?",
       timestamp: "09:25 AM"
     },
     {
@@ -51,64 +55,75 @@ const ChatScreen = () => {
   };
 
   // const handleAudioPlay = (audioUrl) => {
-  //   // Play the audio message
   //   AudioPlayer.play(audioUrl);
   // };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <Text style={styles.backButtonText}>{"<"}</Text>
-        </TouchableOpacity>
-        <Image
-          source={require("../assets/job_selection/manager.jpeg")}
-          style={styles.profilePicture}
-        />
-        <Text style={styles.username}>Jhon Abraham</Text>
-        <Text style={styles.status}>Active now</Text>
-      </View>
-      <View style={styles.chatContainer}>
-        {messages.map((msg, index) => (
-          <View
-            key={index}
-            style={[
-              styles.messageContainer,
-              msg.sender === "You" ? styles.myMessage : styles.otherMessage
-            ]}
-          >
-            <Text style={styles.messageText}>{msg.content}</Text>
-            {msg.audioUrl && (
-              <TouchableOpacity onPress={() => handleAudioPlay(msg.audioUrl)}>
-                {/* <AudioPlayer source={{ uri: msg.audioUrl }} /> */}
-                <Text>Play Audio</Text>
-              </TouchableOpacity>
-            )}
-            <Text style={styles.messageTimestamp}>{msg.timestamp}</Text>
-          </View>
-        ))}
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.messageInput}
-          value={message}
-          onChangeText={setMessage}
-          placeholder="Type a message"
-          returnKeyType="send"
-          onSubmitEditing={handleSendMessage}
-        />
-        <TouchableOpacity style={styles.microphoneButton}>
-          <Text style={styles.microphoneButtonText}>🎙️</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <KeyboardAvoidingView
+      style={styles.container}
+      // behavior={Platform.OS === "ios" ? "padding" : "height"}
+      // keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+    >
+      <ImageBackground
+        source={require("../assets/job_selection/manager.jpeg")}
+        style={[styles.container, { opacity: 0.8 }]}
+      >
+        {/* <View style={styles.container}> */}
+        <View style={styles.header}>
+          {/* <TouchableOpacity style={styles.backButton}>
+            <Text style={styles.backButtonText}>{"<"}</Text>
+          </TouchableOpacity> */}
+          <Image
+            source={require("../assets/job_selection/graphic_designer2.jpeg")}
+            style={styles.profilePicture}
+          />
+          <Text style={styles.username}>Jhon Abraham</Text>
+          <Text style={styles.status}>Active now</Text>
+        </View>
+        <View style={styles.chatContainer}>
+          {messages.map((msg, index) => (
+            <View
+              key={index}
+              style={[
+                styles.messageContainer,
+                msg.sender === "You" ? styles.myMessage : styles.otherMessage
+              ]}
+            >
+              <Text style={styles.messageText}>{msg.content}</Text>
+              {msg.audioUrl && (
+                <TouchableOpacity onPress={() => handleAudioPlay(msg.audioUrl)}>
+                  {/* <AudioPlayer source={{ uri: msg.audioUrl }} /> */}
+                  <Text>Play Audio</Text>
+                </TouchableOpacity>
+              )}
+              <Text style={styles.messageTimestamp}>{msg.timestamp}</Text>
+            </View>
+          ))}
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.messageInput}
+            value={message}
+            onChangeText={setMessage}
+            placeholder="Type a message"
+            returnKeyType="send"
+            onSubmitEditing={handleSendMessage}
+          />
+          <TouchableOpacity style={styles.microphoneButton}>
+            <Text style={styles.microphoneButtonText}>🎙️</Text>
+          </TouchableOpacity>
+        </View>
+        {/* </View> */}
+      </ImageBackground>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "white"
+    flex: 1
+    // opacity: 0.5
+    // backgroundColor: "white"
   },
   header: {
     flexDirection: "row",

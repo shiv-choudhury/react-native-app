@@ -104,8 +104,9 @@ const styles = StyleSheet.create({
     marginVertical: 12
   },
   jobImage: {
-    width: 80,
-    height: 80
+    width: 100,
+    height: 100,
+    borderRadius: 8
   },
   jobTitle: {
     marginTop: 8,
