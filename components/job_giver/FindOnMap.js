@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker, Polyline } from "react-native-maps";
 
 const FindOnMap = () => {
   const jobDoers = [
@@ -13,9 +13,44 @@ const FindOnMap = () => {
     console.log(`Selected job doer: ${jobDoer.name}`);
   };
 
+  const focusMap = {
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421
+  };
+
+  const initialRegion = {
+    latitude: 18.921925,
+    longitude: 72.834706,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1
+  };
+
+  const coordinates = [
+    { latitude: 18.921925, longitude: 72.834706 },
+    { latitude: 18.894151, longitude: 72.809351 },
+    { latitude: 18.938579, longitude: 72.825486 }
+  ];
+
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} />
+      <MapView
+        // animateToRegion={focusMap}
+        mapType="satellite"
+        initialRegion={initialRegion}
+        style={styles.map}
+      >
+        <Marker coordinate={coordinates[0]} />
+        <Marker coordinate={coordinates[1]} />
+        <Marker coordinate={coordinates[2]} />
+
+        {/* <Polyline
+          coordinates={coordinates}
+          strokeWidth={2}
+          strokeColor="#00f"
+        /> */}
+      </MapView>
       <View style={styles.jobDoersContainer}>
         {jobDoers.map((jobDoer) => (
           <TouchableOpacity
